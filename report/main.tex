@@ -15,6 +15,8 @@ Master Probabilit\'{e} et Finance }
 \usepackage{epstopdf}
 \usepackage{xcolor}
 
+\DeclareMathOperator{\erf}{erf}
+
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 
 \begin{document}
@@ -104,7 +106,7 @@ Dans toute la suite, le pas sera pris égal à un jour et les rendements de chac
  
 On considère une variable aléatoire $ X $ de densité $ p(x) $ pour obtenir  la transformation gaussienne de $ y(x) $ de $ X $, on utilise la loi de conservation de la probabilité. Une fois celle-ci intégrée, on obtient, en introduisant la distribution erreur :
 \begin{equation}
-y=\sqrt{2}erf^{-1}(2F(x)-1).
+y=\sqrt{2}\erf^{-1}(2F(x)-1).
 \end{equation}
  Il peut être intéressant d'introduire dès à présent la paramétrisation de \textsc{Von Misis}. En effet, dans le cas particulier où la densité associée à X ne possède qu'un seul maximum, il est possible de simplifier grandement la formule de transformation obtenue au paragraphe précédent. Cette paramétrisation consiste à récrire la fonction densité sous la forme : 
  \begin{equation}
