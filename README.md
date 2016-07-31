@@ -7,6 +7,15 @@ Projet du cours "Risque de crédit" dispensé par M. Turc dans le cadre du maste
 **Auteurs :** Maxime LEGRAND, Alexandre PRÉVOT  
 **Professeur encadrant :** Julien TURC
 
+## Contenu
+
+Le contenu principal de ce dépôt se divise entre deux dossiers :
+
+ - [`rapport`](report) : Dossier contenant le code source du rapport fourni, et incarnant la partie _"étude théorique"_ de ce projet.
+ - [`code`](code) : Dossier dédié à la partie _"application"_. Il contient en particulier les [données](code/data) fournies, le [code Python](code/src) utilisé, et un [notebook Jupyter](code/main.ipynb) permettant de manipuler tout ce beau monde.
+ 
+[Jupyter](http://jupyter.org/) est nécessaire pour exécuter le notebook. Cependant, la préview donnée par GitHub est suffisante pour donner une idée du travail fourni.
+
 ## Ressources
 
 Notre article de départ est _General framework for a portfolio theory with non-Gaussian
