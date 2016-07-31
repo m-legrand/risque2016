@@ -5,3 +5,5 @@
 *.swp
 *.DS_Store
 report/*.pdf
+
+*.ipynb_checkpoints
