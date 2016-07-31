@@ -19,7 +19,7 @@ Le contenu principal de ce dépôt se divise entre deux dossiers :
 ## Ressources
 
 Notre article de départ est _General framework for a portfolio theory with non-Gaussian
-risks and non-linear correlations_ de MALEVERGNE and SORNETTE.
+risks and non-linear correlations_ de Yannick MALEVERGNE et Didier SORNETTE.
 
 Il peut être récupéré [localement](refs/article.pdf) ou [en ligne](https://arxiv.org/pdf/cond-mat/0103020.pdf).
 
