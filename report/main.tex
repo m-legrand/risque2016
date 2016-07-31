@@ -18,7 +18,9 @@ Master Probabilit\'{e} et Finance }
 \begin{document}
 
 \maketitle
+
 \newpage 
+
 \newsavebox{\auteurbm}
 \newenvironment{Bonmot}[1]%
   {\small\slshape%
@@ -29,145 +31,142 @@ Master Probabilit\'{e} et Finance }
  \begin{Bonmot}{La peste, Albert Camus}
   Car il savait ce que cette foule en joie ignorait, et qu'on peut lire dans les livres, que le bacille de la peste ne meurt ni ne disparaît jamais, qu'il peut rester pendant des dizaines d'années endormi dans les meubles et le linge, qu'il attend patiemment dans les chambres, les caves, les malles, les mouchoirs et les paperasses, et que, peut-être, le jour viendrait où, pour le malheur et l'enseignement des hommes, la peste réveillerait ses rats et les enverrait mourir dans une cité heureuse.
 \end{Bonmot}
-\newpage 
-\tableofcontents
-\section{Introduction}
-\paragraph{ }
-Pour un portefeuille constitué de $ N $ actifs, la détermination de la loi jointe des $EN  $ rendements  associés aux actifs permet de caractériser entièrement ses mêmes rendements et le risque inhérent au portefeuille.la démarche consiste alors en deux étapes :
-\begin{itemize}
-\item détermination de la distribution jointe des rendements des actifs considérés
-\item construire une mesure cohérente du risque associé au portefeuille afin d'en extraire un moyen d'optimiser le portefeuille (en utilisant la théorie de Markovitz  ou celle du CPM)
 
+\newpage 
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+
+Pour un portefeuille constitué de $N$ actifs, la détermination de la loi jointe des $N$ rendements  associés aux actifs permet de caractériser entièrement ses mêmes rendements et le risque inhérent au portefeuille. La démarche consiste alors en deux étapes :
+\begin{itemize}
+\item détermination de la distribution jointe des rendements des actifs considérés;
+\item construction d'une mesure cohérente du risque associé au portefeuille afin d'en extraire un moyen d'optimiser le portefeuille (en utilisant la théorie de Markovitz ou celle du CPM).
 \end{itemize}
-\paragraph{ }dans le cadre
-dans un cadre de travail gaussien, l'étude de cette loi jointe est considérablement simplifiée. Celle-ci  s'obtient à partir uniquement de la matrice de variance covariance  et le risque se trouve entièrement déterminé par la connaissance de la variance du portefeuille constitué  des rendements des actifs. Néanmoins,  les distributions réelles s'éloignent de distribution gaussienne (queue épaisse). La VaER permet de Mieux mesurer le risque dans ce cadre non gaussien.
+Dans un cadre de travail gaussien, l'étude de cette loi jointe est considérablement simplifiée. Celle-ci s'obtient uniquement à partir de la matrice de variance-covariance, et le risque s'en trouve entièrement déterminé par la connaissance de la variance du portefeuille constitué des rendements des actifs. Néanmoins, les distributions réelles s'éloignent de distributions gaussiennes : elles ont en effet en général des queues épaisses. La VaR permet de mieux mesurer le risque dans ce cadre non-gaussien.
 
 \section{Estimation de la loi jointe des rendements des actifs}
-on considère que l'on possède $ N $ actif qui constitue un portefeuille $ \Pi $. La quantité initialement présente d'actif numéro $ i $est notée $ n_{i} $ et le prix à la date $ t $de ce même actif $ p_{i}(t ) $.  on considère un pas de décalage $ \tau $. La valeur du portefeuille s'exprime dans ce cas sous la forme
+
+On considère que l'on possède $N$ actifs qui constituent un portefeuille $\Pi$. La quantité initialement présente d'actifs numéro $i$ est notée $n_{i}$ et le prix à la date $t$de ce même actif $p_{i}(t)$.  On considère un pas de décalage $\tau$. La valeur du portefeuille s'exprime dans ce cas sous la forme
 \begin{equation}
-W (\tau )=\sum_{i= 1}^{N}n_{i}p_{i} (\tau )
+W (\tau )=\sum_{i= 1}^{N}n_{i}p_{i} (\tau ).
 \end{equation}
-avec ces notations, la variation du prix du portefeuille rapporté au prix initial, que l'on appellera rendement et notera $ S_{\tau} $, prend la forme :
+Avec ces notations, la variation du prix du portefeuille rapporté au prix initial, que l'on appellera rendement et notera $ S_{\tau} $, prend la forme
 \begin{equation}
 S_{\tau}=\sum_{i= 1}^{N}w_{i}r_{i} (t,\tau )
 \end{equation}
-$ w_{i}=\frac{n_{i}p_{i}(0)}{\sum_{j=1}^{n}n_{j}p_{j}(0)} $ désigne la fraction du capital investi dans l'actif numéro $ i $ à la date initiale et $ r_{i}(t,\tau )=\frac{p_{i}(t)-p_{i}(t-\tau )}{p_{i}(t-\tau )} $ désigne le rendement de ce même actif entre les instants $ t-\tau $et $ t $.
-Dans toute la suite, le pas sera pris égal à un jour et les rendements de chacun des actifs sont notés $ X_{ 1},\cdots , X_{EN} $.\subsection{Méthodologie}
+où $ w_{i}=\frac{n_{i}p_{i}(0)}{\sum_{j=1}^{n}n_{j}p_{j}(0)} $ désigne la fraction du capital investi dans l'actif numéro $ i $ à la date initiale et $ r_{i}(t,\tau )=\frac{p_{i}(t)-p_{i}(t-\tau )}{p_{i}(t-\tau )} $ désigne le rendement de ce même actif entre les instants $t-\tau$ et $t$.
+Dans toute la suite, le pas sera pris égal à un jour et les rendements de chacun des actifs seront notés $ X_{ 1},\cdots , X_{EN} $.
+
+\subsection{Méthodologie}
+
  La méthode décrite dans l'article peut se décomposer en deux grandes phases :
- \begin{itemize}
+ \begin{enumerate}
  \item Chaque rendement $ x $ est transformé selon une variable aléatoire gaussienne par une application croissante non linéaire.
- \item  le principe de  maximisation d'entropie est utilisé pour construire la distribution jointe correspondante pour la variable $ y $ .
- \end{itemize}
+ \item  Le principe de  maximisation d'entropie est utilisé pour construire la distribution jointe correspondante pour la variable $ y $ . 
+ \end{enumerate}
+ 
  \subsubsection{Transformation d'une variable aléatoire arbitraire en une variable aléatoire gaussienne}
-\paragraph{}
-On considère une variable aléatoire $ X $ de densité $ p(x) $ pour obtenir  la transformation gaussienne de $ y(x) $ de $ X $, on utilise la loi de conservation de la probabilité. Une fois celle-ci intégrée, on obtient, introduisant la distribution erreur :
+ 
+On considère une variable aléatoire $ X $ de densité $ p(x) $ pour obtenir  la transformation gaussienne de $ y(x) $ de $ X $, on utilise la loi de conservation de la probabilité. Une fois celle-ci intégrée, on obtient, en introduisant la distribution erreur :
 \begin{equation}
-y=\sqrt{2}erf^{-1}(2F(x)-1)
+y=\sqrt{2}erf^{-1}(2F(x)-1).
 \end{equation}
- \paragraph{}
- Il peut être intéressant d'introduire des à présent la paramétrisation de $Von Misis$ . En effet, dans le cas particulier où la densité associée à X ne possède qu'un seul maximum, il est possible de simplifier grandement la formule de transformation obtenue au paragraphe précédent. cette paramétrisation consiste à récrire la fonction densité sous la forme : 
+ Il peut être intéressant d'introduire dès à présent la paramétrisation de \textsc{Von Misis}. En effet, dans le cas particulier où la densité associée à X ne possède qu'un seul maximum, il est possible de simplifier grandement la formule de transformation obtenue au paragraphe précédent. Cette paramétrisation consiste à récrire la fonction densité sous la forme : 
  \begin{equation}
- p(x)=C\frac{f'(x)}{\sqrt{\vert f(x)\vert }}e^{\frac{1}{2}f(x)}
+ p(x)=C\frac{f'(x)}{\sqrt{\vert f(x)\vert }}e^{\frac{1}{2}f(x)}.
  \end{equation}
- La constante C désigne une constante normalisation
- Ce type de paramétrisation conduit à une variable transformée sous la forme :
+ La constante C désigne une constante de normalisation. Ce type de paramétrisation conduit à une variable transformée sous la forme :
  \begin{equation}
- y=sgn(x)\sqrt{\vert f(x)\vert}
+ y=sgn(x)\sqrt{\vert f(x)\vert}.
  \end{equation}
+ 
   \subsubsection{Principe du maximum d'entropie}
-  \paragraph{} 
+  
   La distribution marginale de $X_{i}$ s'écrit $p_{i}(x_{i})$ et la transformée gaussienne de $X_{i}$ sera notée $Y_{i}$. Enfin, $y$ désigne le vecteur de $\mathbb{R}^{N}$ ayant pour composante $Y_{1},\cdots ,Y_{N}$.
-  \paragraph{}
-   la matrice de variance covariance associée à $y$ s'écrit :
+   La matrice de variance covariance associée à $y$ s'écrit :
   \begin{equation}
-  V=\mathbb{E}(yy^{t})
+  V=\mathbb{E}(yy^{t}).
   \end{equation}
    Dans le contexte gaussien, le principe de maximisation d'entropie prend la forme simple suivante :
-   La distribution jointe qui maximise l'entropie est la \textbf{distribution multivariée gaussienne}.  utilisant les propriétés de la transformation décrite précédemment, il est possible d'écrire la distribution jointe des variables aléatoires $X_{i}$ :
+   \begin{quote}
+   La distribution jointe qui maximise l'entropie est la \emph{distribution multivariée gaussienne}. 
+   \end{quote}
+ En utilisant les propriétés de la transformation décrite précédemment, il est possible d'écrire la distribution jointe des variables aléatoires $X_{i}$ :
    \begin{equation}
-   P(y)=\frac{1}{\sqrt{det(V)}}exp(-\frac{1}{2}y^{t}_{(u)}(V^{-1}-I)y_{(u)})\prod_{i=1}^{N}(p_{i}(x_{i}))
+   P(y)=\frac{1}{\sqrt{det(V)}}exp(-\frac{1}{2}y^{t}_{(u)}(V^{-1}-I)y_{(u)})\prod_{i=1}^{N}(p_{i}(x_{i})).
    \end{equation}
    Il résulte immédiatement de cette formule que la densité de la copule associée s'écrit :
    \begin{equation}
    c(u_{1},\cdots ,u_{N})=\frac{1}{\sqrt{det(V)}}exp(-\frac{1}{2}y^{t}_{(u)}(V^{-1}-I)y_{(u)})
    \end{equation}
+   
   \subsection{Test du caractère gaussien} 
+  
+  \begin{verbatim}
+  NULL
+  \end{verbatim}
+  
   \subsection{Application à la paramétrisation des distributions marginales}
+  
   \subsubsection{Modélisation via une loi de Weibull modifiée}
-   Pour représenter au mieux les propriétés des rendements que l'on observe sur les marchés, on choisit une classe de distribution possédant des queues de distribution épaisse. Naturellement, la distribution de Weibull peut s'utiliser dans ce cadre. Afin de tenir compte de l'asymétrie des rendements, on introduit une distinction selon que le paramètre principal est positif ou négatif. En résumé, la distribution marginale des rendements possède une densité qui s'écrit sous la forme :
-   \begin{equation}
-   p(x)=\frac{1}{2\sqrt{\pi}}\frac{c_{+}}{\chi _{+}^{\frac{c+}{2}}}\vert x\vert^{\frac{c+}{2-1}}e^-({\frac{\vert x\vert}{\chi _{+}})^{c_{+}}}\;\text{si}\: x\geqslant 0
-   \end{equation}
-  \begin{equation}
-  p(x)=\frac{1}{2\sqrt{\pi}}\frac{c_{-}}{\chi _{-}^{\frac{c-}{2}}}\vert x\vert^{\frac{c-}{2-1}}e^-({\frac{\vert x\vert}{\chi _{-}})^{c_{-}}}\;\text{si}\: x<0
-  \end{equation}
+  
+   Pour représenter au mieux les propriétés des rendements que l'on observe sur les marchés, on choisit une classe de distributions possédant des queues de distribution épaisses. Naturellement, la distribution de Weibull peut s'utiliser dans ce cadre. Afin de tenir compte de l'asymétrie des rendements, on introduit une distinction selon que le paramètre principal est positif ou négatif. En résumé, la distribution marginale des rendements possède une densité qui s'écrit sous la forme :
+   \begin{align}
+   p(x) &= \frac{1}{2\sqrt{\pi}}\frac{c_{+}}{\chi _{+}^{\frac{c+}{2}}}\vert x\vert^{\frac{c+}{2-1}}e^-({\frac{\vert x\vert}{\chi _{+}})^{c_{+}}}\;\text{si}\: x\geqslant 0\\
+  p(x) &= \frac{1}{2\sqrt{\pi}}\frac{c_{-}}{\chi _{-}^{\frac{c-}{2}}}\vert x\vert^{\frac{c-}{2-1}}e^-({\frac{\vert x\vert}{\chi _{-}})^{c_{-}}}\;\text{si}\: x<0
+  \end{align}
   \subsubsection{Transformation gaussienne}
   En utilisant les résultats techniques introduits précédemment, avec la fonction $ f(x)=2(\frac{\vert x\vert}{\chi})^{c} $, On a, pour la distribution marginale des rendements, les résultats suivants :
   \begin{equation}
   P(x_{1},\cdots ,x_{N})=\frac{1}{2^{N}\pi ^{N/2}\sqrt{V}}\prod ^{N}_{i=1}\frac{c_{i}\vert x_{i}\vert ^{c/2-1}}{\chi _{i}^{c/2}}exp{-\sum _{i,j}V_{ij}^{-1}(\frac{\vert x_{i}\vert}{\chi_{i}})^{c/2}(\frac{\vert x_{j}\vert}{\chi_{j}})^{c/2}}
   \end{equation}
   \subsection{Estimation asymptotique de la VaR}
-\paragraph{}   
-   Ce paragraphe examine de façon théorique l'exposant de queue de la distribution dans plusieurs régimes : et plusieurs situations. On distingue les régimes $ c>1 $ et $ c<1 $ et les deux situations : les exposants de queue de chacune des distributions des rendements sont différents ; les exposants de queue sont tous égaux.
-\paragraph{}
- Conservent les notations précédentes. La valeur du portefeuille s'écrit :
+   Ce paragraphe examine de façon théorique l'exposant de queue de la distribution dans plusieurs régimes : et plusieurs situations. On distingue les régimes $ c>1 $ et $ c<1 $ et les deux situations : les exposants de queue de chacune des distributions des rendements sont différents ; les exposants de queue sont tous égaux.\\
+ En conservant les notations précédentes, la valeur du portefeuille s'écrit :
  \begin{equation}
- S=\sum ^{N}_{i=1}w_{i}X_{i}
+ S=\sum ^{N}_{i=1}w_{i}X_{i}.
  \end{equation}
-    l'article montre que la distribution marginale obéit à la relation suivante : 
-    \begin{equation}
-	P(S)\sim e^{-(\frac{\vert S \vert}{\chi}c}
-    \end{equation}
-    \begin{equation}
-    \chi =(\sum _{i}(w_{i}\chi _{i})^{\frac{c-1}{c}}
-    \end{equation}
-    \begin{equation}
-    \chi = \frac{1}{c\sum i,jV_{ij}^{-1}\sigma_{i}^{c/2}\sigma ^{c/2}_{j})^{\frac{1}{c}}}
-    \end{equation}
-    \begin{equation}
-    \chi =(
-    \end{equation}
+    L'article montre que la distribution marginale obéit à la relation suivante : 
+    \begin{align}
+	P(S) &\sim e^{-(\frac{\vert S \vert}{\chi}c}\\
+    \chi &= (\sum _{i}(w_{i}\chi _{i})^{\frac{c-1}{c}}\\
+    \chi &= \frac{1}{c\sum i,jV_{ij}^{-1}\sigma_{i}^{c/2}\sigma ^{c/2}_{j})^{\frac{1}{c}}}
+    \end{align}
  \subsection{Développement asymptotique des cumulants}
 \paragraph{}         
-       Par définition, $ \widehat{P} $ désigne la transformée la de Fourier de $P$, les moments et les cumulant de la distribution $P$ sont définies par les relations :
-       \begin{equation}
-       \widehat{P}(k)=\sum _{n=0}^{+\infty }\frac{(ik)^{n}}{n!}M_{n}
-       \end{equation}
-       \begin{equation}
-       \widehat{P}(k)=\exp(\sum _{n=1}^{+\infty }\frac{(ik)^{n}}{n!}C_{n})
-       \end{equation}
-        il est possible de relier les expressions mathématiques des cumulant et moments d'ordre $n$ grâce aux formules :
-    \begin{equation}
-    M_{n}=\sum ^{n-1}_{p=0}(C^{p}_{n-1})M_{p}C_{n-p}
-    \end{equation}
-    \begin{equation}
-    C_{n}=M_{n}-\sum ^{n-1}_{p=1}(C_{n-1}^{n-p}C_{p}M_{n-p}
-    \end{equation}
-     \paragraph{}
-     L'objectif de cette partie est donné un développement asymptotique des cumulant de la distribution dans plusieurs cas.
+       Par définition, $ \widehat{P} $ désigne la transformée la de Fourier de $P$. Les moments et les cumulants de la distribution $P$ sont définis par les relations :
+       \begin{align}
+       \widehat{P}(k) &= \sum _{n=0}^{+\infty }\frac{(ik)^{n}}{n!}M_{n}\\
+       \widehat{P}(k) &= \exp(\sum _{n=1}^{+\infty }\frac{(ik)^{n}}{n!}C_{n}).
+       \end{align}
+        Il est possible de relier les expressions mathématiques des moments et cumulants d'ordre $n$ par les formules :
+    \begin{align}
+    M_{n} &= \sum ^{n-1}_{p=0}(C^{p}_{n-1})M_{p}C_{n-p}\\
+    C_{n} &= M_{n}-\sum ^{n-1}_{p=1}(C_{n-1}^{n-p}C_{p}M_{n-p}
+    \end{align}
+     L'objectif de cette partie est de donner un développement asymptotique des cumulants de la distribution dans plusieurs cas.
      \subsubsection{Cas d'actifs symétriques}
      \paragraph{Pour des actifs indépendants}
-     On pose $ q_{i}=\frac{2}{c_{i}}$.Avec les notations précédemment introduites, on obtient développement des cumuls d'ordre père :
-     \begin{equation}
-     C_{2n}=\sum_{i=1}^{N}c(n,q_{i})(\chi _{i}\omega _{i})^{2n}
-     \end{equation}
-     \begin{equation}
-     c(n,q_{i})=(2n)!\lbrace \sum_{p=0}^{n-2}(-1)^{n}\frac{\Gamma (q_{i}(n-p)+\frac{1}{2})}{(2n-2p)!\pi ^{1/2}}{\frac{\Gamma (q_{i}+\frac{1}{2})}{!\pi ^{1/2}}}^{p}-\frac{(-1)^{n}}{n}\lbrace \frac{\Gamma (q_{i}+\frac{1}{2})}{!\pi ^{1/2}}\rbrace ^{n}\rbrace
-     \end{equation}
+     On pose $ q_{i}=\frac{2}{c_{i}}$.Avec les notations précédemment introduites, on obtient le développement des cumuls d'ordre pair :
+     \begin{align}
+     C_{2n} &= \sum_{i=1}^{N}c(n,q_{i})(\chi _{i}\omega _{i})^{2n}\\
+     c(n,q_{i}) &= (2n)!\lbrace \sum_{p=0}^{n-2}(-1)^{n}\frac{\Gamma (q_{i}(n-p)+\frac{1}{2})}{(2n-2p)!\pi ^{1/2}}{\frac{\Gamma (q_{i}+\frac{1}{2})}{!\pi ^{1/2}}}^{p}-\frac{(-1)^{n}}{n}\lbrace \frac{\Gamma (q_{i}+\frac{1}{2})}{!\pi ^{1/2}}\rbrace ^{n}\rbrace
+     \end{align}
       \paragraph{Pour des actifs dépendants}
       \section{ Optimisation du portefeuille}
-      La façon d'optimiser le portefeuille dépend de la nature de la mesure du risque choisit.
+      La façon d'optimiser le portefeuille dépend de la nature de la mesure du risque choisi.
       \subsection{Optimisation par rapport à la VaR}
       \subsubsection{Les exposants $c$ des actifs sont distincs}
-       L'article stipule qu'il n'est pas possible de diversifier le portefeuille pour les grands risques. Des lors la stratégies minimisant ses grands risques consiste à détenir une des quantités d'actifs à queue lourde qui soient le plus faible possible tout en respectant les contraintes imposés sur la moyenne du portefeuille
+       L'article stipule qu'il n'est pas possible de diversifier le portefeuille pour les grands risques. Dès lors, la stratégie minimisant ses grands risques consiste à détenir une quantité d'actifs à queue lourde qui soit le plus faible possible tout en respectant les contraintes imposées sur la moyenne du portefeuille.
        \subsubsection{Les exposants $c$ des actifs sont égaux}
      On peut montrer que la VaR est une fonction croissante du paramètre d'échelle $\chi $ telle que :
-     \begin{equation}
-       \chi ^{c} = \frac{1}{c\sum i,jV_{ij}^{-1}\sigma_{i}^{c/2}\sigma ^{c/2}_{j})^{\frac{1}{c}}}\;\text{si}\, c>1
-       \end{equation}  
-      \begin{equation}
-      \chi ^{2}=\max \lbrace w^{2}_{1}\chi _{1}^{2},\cdots ,w_{N}^{2}\chi ^{N}_{2}\rbrace
-      \end{equation}
+     \begin{align}
+       \chi ^{c} &= \frac{1}{c\sum i,jV_{ij}^{-1}\sigma_{i}^{c/2}\sigma ^{c/2}_{j})^{\frac{1}{c}}}\;\text{si}\, c>1\\
+      \chi ^{2} &= \max \lbrace w^{2}_{1}\chi _{1}^{2},\cdots ,w_{N}^{2}\chi ^{N}_{2}\rbrace.
+      \end{align}
        Le problème d'optimisation à résoudre se formule de la façon suivante :
        \begin{equation}
        \chi^{*}\equiv inf_{w_{i}}VaR({w_{i}})
@@ -195,7 +194,7 @@ y=\sqrt{2}erf^{-1}(2F(x)-1)
       \end{equation}
       \subsection{Optimisation par rapport aux cumulants}
 \paragraph{}      
-      L'article stipule qu'il est possible d'espérer que la mesure du risque pour des cumulants d'ordre élevé est équivalent au contrôle du risque basé sur la VaR et que l'on a dit précédemment (ordre élevé signifie ordre plus grand que $6$). On peut le vérifier empiriquement en évaluant les cumulants pour le portefeuille considéré dans l'étude. Rendre minimale le risque revient à minimiser ainsi les cumulants d'ordre $n>6$.
+      L'article stipule qu'il est possible d'espérer que la mesure du risque pour des cumulants d'ordre élevé est équivalent au contrôle du risque basé sur la VaR et que l'on a donné plus haut (ordre élevé signifie ordre plus grand que $6$). On peut le vérifier empiriquement en évaluant les cumulants pour le portefeuille considéré dans l'étude. Minimiser le risque revient ainsi à minimiser les cumulants d'ordre $n>6$.
     \paragraph{}
      Le principe d'optimisation pour les cumulants s'écrit :
        \begin{equation}
