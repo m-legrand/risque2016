@@ -7,3 +7,4 @@
 report/*.pdf
 
 *.ipynb_checkpoints
+*.pyc
